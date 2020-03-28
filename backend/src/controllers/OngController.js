@@ -1,4 +1,4 @@
-const crypto = require('crypto');       //  Serve para criar chaves aleatórias
+const generateUniqueId = require('../utils/generateUniqueId')
 const connection = require('../database/connection')
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
     async create(req, res) {
 
         const { name, email, whatsapp, city, uf } = req.body;
-        const id = crypto.randomBytes(4).toString('HEX');               // Será criada uma chave aleatória de 4 bytes e convertida em uma 'string' Hexadecimal       
+        const id = generateUniqueId();               // Será criada uma chave aleatória de 4 bytes e convertida em uma 'string' Hexadecimal       
     
         await connection('ongs').insert({
             id,
